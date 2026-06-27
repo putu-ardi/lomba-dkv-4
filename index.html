@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DKV Grafika: Profesi, Teknologi, dan Desain</title>
+  
+  <!-- Font Lokal (Placeholder menggunakan Google Fonts untuk MVP) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  
+  <style>
+    .hero {
+      text-align: center;
+      padding: var(--spasi-12) var(--spasi-6);
+      background: var(--gradien-primer);
+      color: white;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spasi-8);
+      box-shadow: 0 10px 25px rgba(45, 45, 229, 0.3);
+    }
+    
+    .hero h1 {
+      font-size: var(--teks-3xl);
+      margin-bottom: var(--spasi-2);
+    }
+    
+    .hero p {
+      font-size: var(--teks-lg);
+      opacity: 0.9;
+    }
+
+    .modul-card {
+      position: relative;
+    }
+    
+    .modul-card .status-badge {
+      position: absolute;
+      top: var(--spasi-4);
+      right: var(--spasi-4);
+    }
+    
+    .action-bar {
+      margin-top: var(--spasi-8);
+      display: flex;
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+<body style="background: var(--gradien-bg); min-height: 100vh;">
+
+  <!-- Modal Popup Profil -->
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal-content">
+      <h2 style="margin-bottom: var(--spasi-2);">Selamat Datang!</h2>
+      <p style="margin-bottom: var(--spasi-6); color: var(--warna-netral-800);">Silakan lengkapi data diri Anda sebelum memulai.</p>
+      
+      <form id="profile-form">
+        <div class="form-group">
+          <label for="input-nisn">NISN</label>
+          <input type="text" id="input-nisn" class="form-control" required placeholder="Masukkan NISN">
+        </div>
+        <div class="form-group">
+          <label for="input-nama">Nama Lengkap</label>
+          <input type="text" id="input-nama" class="form-control" required placeholder="Masukkan Nama">
+        </div>
+        <div class="form-group">
+          <label for="input-smk">Asal SMK</label>
+          <input type="text" id="input-smk" class="form-control" required placeholder="Contoh: SMKN 1 Klungkung">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--spasi-4);">Mulai Belajar</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container fade-in">
+    <!-- Kontainer Informasi Pengguna -->
+    <div id="user-info-container"></div>
+
+    <header class="hero">
+      <h1>DKV Grafika</h1>
+      <p>Profesi, Teknologi, dan Desain — Wawasan Dunia Kerja</p>
+    </header>
+
+    <main>
+      <h2 style="text-align: center; margin-bottom: var(--spasi-6);">Pilih Modul Pembelajaran</h2>
+      
+      <div class="grid grid-3" id="modul-container">
+        <!-- Modul 1A -->
+        <div class="card modul-card" id="card-1a">
+          <span class="status-badge status-belum" id="badge-1a">Belum Mulai</span>
+          <h3 class="card-title">Modul 1A</h3>
+          <p class="card-body">Peta Profesi DKV & Grafika dalam ekosistem kreatif Indonesia.</p>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-1a"></div>
+          </div>
+          <a href="modul-1a/index.html" class="btn btn-primary" style="margin-top: var(--spasi-4); display: block;">Buka Modul</a>
+        </div>
+
+        <!-- Modul 1B -->
+        <div class="card modul-card" id="card-1b">
+          <span class="status-badge status-belum" id="badge-1b">Belum Mulai</span>
+          <h3 class="card-title">Modul 1B</h3>
+          <p class="card-body">Evolusi Teknologi Cetak ke Digital & Prinsip Keberlanjutan.</p>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-1b"></div>
+          </div>
+          <a href="modul-1b/index.html" class="btn btn-primary" style="margin-top: var(--spasi-4); display: block;">Buka Modul</a>
+        </div>
+
+        <!-- Modul 1C -->
+        <div class="card modul-card" id="card-1c">
+          <span class="status-badge status-belum" id="badge-1c">Belum Mulai</span>
+          <h3 class="card-title">Modul 1C</h3>
+          <p class="card-body">Bahasa Visual, Prinsip Desain, & Design Thinking.</p>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-1c"></div>
+          </div>
+          <a href="modul-1c/index.html" class="btn btn-primary" style="margin-top: var(--spasi-4); display: block;">Buka Modul</a>
+        </div>
+      </div>
+
+      <!-- Kuis Akhir (Terkunci secara default) -->
+      <div class="card" style="margin-top: var(--spasi-8); text-align: center;">
+        <h3 class="card-title">Kuis Komprehensif Akhir</h3>
+        <p class="card-body">Uji pemahamanmu setelah menyelesaikan ketiga modul di atas.</p>
+        <a href="kuis-akhir/index.html" class="btn btn-outline" id="btn-kuis" style="opacity: 0.5; pointer-events: none;">Terkunci (Selesaikan Modul Dulu)</a>
+      </div>
+
+      <div class="action-bar">
+        <button class="btn btn-outline" style="color: var(--warna-bahaya); border-color: var(--warna-bahaya);" onclick="window.dkvCore.resetProgress()">Reset Progress</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/accessibility.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Logic for Profile Modal
+      const profile = window.dkvCore.getProfile();
+      const modal = document.getElementById('profile-modal');
+      const form = document.getElementById('profile-form');
+      
+      if (!profile) {
+        // Show modal if no profile
+        modal.classList.add('active');
+        
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nisn = document.getElementById('input-nisn').value.trim();
+          const nama = document.getElementById('input-nama').value.trim();
+          const smk = document.getElementById('input-smk').value.trim();
+          
+          if (nisn && nama && smk) {
+            window.dkvCore.saveProfile({ nisn, nama, smk });
+            modal.classList.remove('active');
+            window.dkvCore.renderUserInfo();
+          }
+        });
+      }
+
+      // Update UI based on LocalStorage
+      const state = window.dkvCore.getProgress();
+      
+      const modules = ['1a', '1b', '1c'];
+      let allCompleted = true;
+
+      modules.forEach(mod => {
+        const modState = state[`modul_${mod}`];
+        const badge = document.getElementById(`badge-${mod}`);
+        const progressBar = document.getElementById(`progress-${mod}`);
+        
+        if (modState.status === 'selesai') {
+          badge.className = 'status-badge status-selesai';
+          badge.innerText = 'Selesai';
+          progressBar.style.width = '100%';
+        } else if (modState.status === 'sedang') {
+          badge.className = 'status-badge status-sedang';
+          badge.innerText = 'Sedang Dikerjakan';
+          progressBar.style.width = '50%'; // Simplified calculation for MVP hub
+          allCompleted = false;
+        } else {
+          allCompleted = false;
+        }
+      });
+
+      // Unlock final quiz if all completed
+      const btnKuis = document.getElementById('btn-kuis');
+      if (allCompleted) {
+        btnKuis.style.opacity = '1';
+        btnKuis.style.pointerEvents = 'auto';
+        btnKuis.innerText = 'Mulai Kuis Akhir';
+        btnKuis.className = 'btn btn-primary';
+      }
+    });
+  </script>
+</body>
+</html>

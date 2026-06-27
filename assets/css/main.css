@@ -1,0 +1,87 @@
+:root {
+  /* Palet Warna — Tema "Studio Kreatif Modern" */
+  --warna-primer: #2D2DE5; /* Biru desain — identitas DKV */
+  --warna-aksen: #FF4F00; /* Oranye kreatif — energi & inovasi */
+  --warna-sukses: #00A86B; /* Hijau — jawaban benar / selesai */
+  --warna-peringatan: #FFB800; /* Kuning — petunjuk / hint */
+  --warna-bahaya: #E53935; /* Merah — jawaban salah */
+  --warna-netral-100: #F8F8FF; /* Background halaman */
+  --warna-netral-800: #1A1A2E; /* Teks utama */
+  
+  /* Gradien Modern */
+  --gradien-primer: linear-gradient(135deg, #2D2DE5 0%, #6366F1 100%);
+  --gradien-aksen: linear-gradient(135deg, #FF4F00 0%, #FF8A00 100%);
+  --gradien-bg: linear-gradient(135deg, #F8F8FF 0%, #EEF2FF 100%);
+  --gradien-sukses: linear-gradient(135deg, #00A86B 0%, #10B981 100%);
+  
+  /* Tipografi */
+  --font-display: 'Plus Jakarta Sans', sans-serif; /* Judul & heading */
+  --font-body: 'Inter', sans-serif; /* Paragraf & UI */
+  --font-mono: 'JetBrains Mono', monospace; /* Kode & data */
+  
+  /* Skala Font */
+  --teks-xs: 0.75rem; /* 12px */
+  --teks-sm: 0.875rem; /* 14px */
+  --teks-base: 1rem; /* 16px */
+  --teks-lg: 1.25rem; /* 20px */
+  --teks-xl: 1.5rem; /* 24px */
+  --teks-2xl: 2rem; /* 32px */
+  --teks-3xl: 2.5rem; /* 40px */
+  
+  /* Spacing */
+  --spasi-1: 4px; 
+  --spasi-2: 8px; 
+  --spasi-3: 12px;
+  --spasi-4: 16px; 
+  --spasi-6: 24px; 
+  --spasi-8: 32px;
+  --spasi-12: 48px; 
+  --spasi-16: 64px;
+  
+  /* Border Radius */
+  --radius-sm: 4px; 
+  --radius-md: 8px;
+  --radius-lg: 16px; 
+  --radius-full: 9999px;
+  
+  /* Shadow */
+  --bayangan-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --bayangan-md: 0 4px 16px rgba(0,0,0,0.12);
+  --bayangan-lg: 0 8px 32px rgba(0,0,0,0.16);
+  
+  /* Transisi */
+  --transisi-cepat: 150ms ease;
+  --transisi-normal: 300ms ease;
+  --transisi-lambat: 500ms ease;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--warna-netral-100);
+  color: var(--warna-netral-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  margin-top: 0;
+  margin-bottom: var(--spasi-4);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--warna-primer);
+  text-decoration: none;
+  transition: color var(--transisi-cepat);
+}
+
+a:hover {
+  color: var(--warna-aksen);
+}

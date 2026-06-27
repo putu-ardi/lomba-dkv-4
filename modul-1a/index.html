@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul 1A - Peta Profesi DKV & Grafika</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  
+  <style>
+    .module-header {
+      background: var(--gradien-bg);
+      padding: var(--spasi-8) var(--spasi-6);
+      text-align: center;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spasi-8);
+      box-shadow: var(--bayangan-sm);
+    }
+    .module-nav {
+      margin-bottom: var(--spasi-6);
+    }
+    
+    /* Interactive Map Styles */
+    .mindmap-container {
+      position: relative;
+      width: 100%;
+      min-height: 400px;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--bayangan-md);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--spasi-4);
+      padding: var(--spasi-8);
+    }
+    .node-center {
+      background: var(--gradien-primer);
+      color: white;
+      padding: var(--spasi-4) var(--spasi-6);
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: var(--teks-lg);
+      z-index: 10;
+      box-shadow: 0 4px 15px rgba(45, 45, 229, 0.4);
+    }
+    .node-profesi {
+      background: white;
+      border: 2px solid var(--warna-primer);
+      color: var(--warna-primer);
+      padding: var(--spasi-2) var(--spasi-4);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all var(--transisi-cepat);
+      display: flex;
+      align-items: center;
+      gap: var(--spasi-2);
+    }
+    .node-profesi:hover {
+      background: var(--gradien-primer);
+      color: white;
+      transform: scale(1.05);
+    }
+    
+    /* Section containers */
+    .interactive-section {
+      margin-bottom: var(--spasi-12);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container fade-in">
+    <!-- Breadcrumb / Nav -->
+    <nav class="module-nav">
+      <a href="../index.html" class="btn btn-outline" id="back-btn">← Kembali ke Beranda</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="module-header">
+      <h1>Modul 1A: Peta Profesi DKV & Grafika</h1>
+      <p style="font-size: var(--teks-lg); color: var(--warna-netral-800);">"Dunia kreatif lebih luas dari yang kamu kira."</p>
+    </header>
+
+    <!-- Container Informasi Pengguna -->
+    <div id="user-info-container"></div>
+
+    <main>
+      <!-- Komponen 1: Interactive Map -->
+      <section class="interactive-section" id="section-map">
+        <h2>1. Peta Dunia Kerja DKV</h2>
+        <p>Klik pada setiap profesi di bawah ini untuk melihat detail tugas, alat yang sering digunakan, dan rata-rata gajinya!</p>
+        <div class="mindmap-container" id="mindmap">
+          <div class="node-center">Dunia DKV & Grafika</div>
+          <!-- Node profesi akan dirender di sini via JS -->
+        </div>
+      </section>
+
+      <!-- Komponen 2: Flip Cards -->
+      <section class="interactive-section" id="section-flip">
+        <h2>2. Kenali Profesinya!</h2>
+        <p>Tebak tugas utamanya! Klik kartu untuk memutarnya.</p>
+        <div class="grid grid-3" id="flip-cards-container">
+          <!-- Flip cards di-render via JS -->
+        </div>
+      </section>
+
+      <!-- Komponen 3: Drag & Drop Matching -->
+      <section class="interactive-section" id="section-drag">
+        <h2>3. Profesi vs Tugasnya</h2>
+        <p>Tarik kartu profesi ke kotak tugas yang sesuai!</p>
+        <div id="drag-drop-container" style="background: white; padding: var(--spasi-6); border-radius: var(--radius-lg); box-shadow: var(--bayangan-md);">
+          <!-- Drag & Drop container dirender via JS -->
+        </div>
+      </section>
+
+      <!-- Komponen 4: Infographic -->
+      <section class="interactive-section" id="section-info">
+        <h2>4. DKV dalam Ekosistem Kreatif</h2>
+        <p>Arahkan kursor (hover) pada sektor di bawah untuk melihat kontribusi DKV.</p>
+        <div class="grid grid-2" id="infographic-container">
+          <!-- Infographic dirender via JS -->
+        </div>
+      </section>
+
+      <!-- Komponen 5: Mini Quiz -->
+      <section class="interactive-section" id="section-quiz">
+        <div class="card" style="border: 2px solid var(--warna-primer);">
+          <h2>5. Mini Quiz: Tebak Profesinya!</h2>
+          <p>Uji pemahamanmu dari komponen-komponen sebelumnya.</p>
+          <div id="quiz-container">
+            <button id="start-quiz-btn" class="btn btn-primary">Mulai Kuis</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/navigation.js"></script>
+  <script src="../assets/js/accessibility.js"></script>
+  
+  <!-- Modul 1A Specific Scripts -->
+  <script src="js/peta-profesi.js"></script>
+  <script src="js/flip-cards.js"></script>
+  <script src="js/drag-match.js"></script>
+  <script src="js/infographic.js"></script>
+  <script src="js/quiz.js"></script>
+
+  <!-- Load Data (Menghindari CORS error pada file lokal) -->
+  <script src="data/profesi-data.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Data sekarang sudah tersedia secara sinkronus di window.dkvData
+      const data = window.dkvData;
+      
+      if(data) {
+        if(window.initPetaProfesi) window.initPetaProfesi(data.profesi);
+        if(window.initFlipCards) window.initFlipCards(data.profesi);
+        if(window.initDragMatch) window.initDragMatch(data.profesi);
+        if(window.initInfographic) window.initInfographic(data.ekosistem);
+        if(window.initQuiz) window.initQuiz(data.kuis);
+      } else {
+        console.error("Data gagal dimuat.");
+      }
+    });
+  </script>
+</body>
+</html>
