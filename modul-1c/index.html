@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul 1C - Bahasa Visual & Design Thinking</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <style>
+    .module-header {
+      text-align: center;
+      padding: var(--spasi-8) var(--spasi-6);
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spasi-8);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    }
+  </style>
+</head>
+<body style="background: var(--gradien-bg); min-height: 100vh;">
+
+  <!-- User Info Bar Injection Area -->
+  <div class="container fade-in">
+    <div id="user-info-container"></div>
+
+    <!-- Breadcrumb / Nav -->
+    <nav style="margin-bottom: var(--spasi-6); padding-top: var(--spasi-4);">
+      <a href="../index.html" class="btn btn-outline">← Kembali ke Beranda</a>
+    </nav>
+
+    <header class="module-header">
+      <h1 style="font-size: var(--teks-3xl); margin-bottom: var(--spasi-2);">Modul 1C</h1>
+      <p style="font-size: var(--teks-lg);">Bahasa Visual, Prinsip Desain, & Design Thinking</p>
+    </header>
+
+    <main>
+      <!-- 1. Visual Language Playground -->
+      <section class="card" style="margin-bottom: var(--spasi-8);">
+        <h2>1. Visual Language Playground</h2>
+        <p style="margin-bottom: var(--spasi-4);">Setiap bentuk dan warna memancarkan emosi (Psikologi Desain). Mainkan tombol di bawah dan rasakan perubahan emosinya!</p>
+        <div id="visual-play-container"></div>
+      </section>
+
+      <!-- 2. Design Principles Sandbox -->
+      <section class="card" style="margin-bottom: var(--spasi-8);">
+        <h2>2. Design Principles (C.R.A.P)</h2>
+        <p style="margin-bottom: var(--spasi-4);">Nyalakan prinsip desain untuk merapikan poster yang berantakan di bawah ini.</p>
+        <div id="principles-container"></div>
+      </section>
+
+      <!-- 3. Design Thinking Flow -->
+      <section class="card" style="margin-bottom: var(--spasi-8);">
+        <h2>3. Peta Design Thinking</h2>
+        <p style="margin-bottom: var(--spasi-4);">Proses pemecahan masalah (Problem Solving) ala Desainer. Klik setiap tahapan!</p>
+        <div id="design-thinking-container"></div>
+      </section>
+
+      <!-- 4. Advanced Quiz -->
+      <section class="card" style="margin-bottom: var(--spasi-8); border: 2px solid var(--warna-primer);">
+        <h2>4. Evaluasi Akhir Modul 1C</h2>
+        <p style="margin-bottom: var(--spasi-4);">10 Soal (Menjodohkan, Benar/Salah, dan Pilihan Ganda Kompleks).</p>
+        <div id="quiz-container" style="text-align: center;">
+          <button class="btn btn-primary" id="start-quiz-btn" style="font-size: var(--teks-lg); padding: var(--spasi-4) var(--spasi-8);">Mulai Ujian</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/navigation.js"></script>
+  
+  <script src="js/visual-play.js"></script>
+  <script src="js/principles.js"></script>
+  <script src="js/design-thinking.js"></script>
+  <script src="js/quiz.js"></script>
+
+  <!-- Load Data -->
+  <script src="data/desain-data.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = window.dkvData1C;
+      if(data) {
+        if(window.initVisualPlay) window.initVisualPlay();
+        if(window.initPrinciples) window.initPrinciples();
+        if(window.initDesignThinking) window.initDesignThinking(data.designThinking);
+        if(window.initQuiz1C) window.initQuiz1C(data.kuis);
+      }
+    });
+  </script>
+</body>
+</html>

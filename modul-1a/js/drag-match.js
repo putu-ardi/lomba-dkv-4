@@ -1,7 +1,7 @@
-﻿window.initDragMatch = function(profesiData) {
+window.initDragMatch = function(profesiData) {
   const container = document.getElementById('drag-drop-container');
+  container.innerHTML = '';
   
-  // Style injection
   if (!document.getElementById('drag-match-style')) {
     const style = document.createElement('style');
     style.id = 'drag-match-style';
@@ -59,23 +59,20 @@
     document.head.appendChild(style);
   }
 
-  // Shuffle and pick 4 items for the game
   const shuffled = [...profesiData].sort(() => 0.5 - Math.random());
   const gameData = shuffled.slice(0, 4);
-  const tasks = [...gameData].sort(() => 0.5 - Math.random()); // separate shuffle for targets
+  const tasks = [...gameData].sort(() => 0.5 - Math.random()); 
 
   let matchedCount = 0;
 
   let html = '<div class="drag-match-wrapper">';
   
-  // Draggables Column
   html += '<div class="drag-column" id="draggables-col"><h4>Profesi</h4>';
   gameData.forEach(item => {
     html += `<div class="draggable-item" draggable="true" id="drag-${item.id}" data-id="${item.id}">${item.ikon} ${item.nama}</div>`;
   });
   html += '</div>';
 
-  // Dropzones Column
   html += '<div class="drag-column" id="dropzones-col"><h4>Tugas Utama</h4>';
   tasks.forEach(item => {
     html += `<div class="drop-zone" data-target="${item.id}">${item.deskripsi}</div>`;
@@ -85,7 +82,6 @@
 
   container.innerHTML = html;
 
-  // Add Event Listeners
   const draggables = document.querySelectorAll('.draggable-item');
   const dropZones = document.querySelectorAll('.drop-zone');
   const feedback = document.getElementById('drag-feedback');
@@ -123,7 +119,6 @@
       const targetId = zone.getAttribute('data-target');
 
       if (draggedElement && draggedElement.getAttribute('data-id') === targetId) {
-        // Success match
         zone.innerHTML = '';
         zone.appendChild(draggedElement);
         zone.classList.add('matched');
@@ -135,17 +130,14 @@
         
         matchedCount++;
         if (matchedCount === gameData.length) {
-          feedback.innerText = 'Luar Biasa! Semua profesi berhasil dicocokkan! ðŸŽ‰';
+          feedback.innerText = 'Luar Biasa! Semua profesi berhasil dicocokkan! 🎉';
           window.dkvCore.markComponentDone('1a', 'drag_match');
         }
       } else {
-        // Wrong match
         feedback.style.color = 'var(--warna-bahaya)';
         feedback.innerText = 'Oops! Coba cocokan lagi.';
-        // shake animation can be added here
       }
       
-      // Clear feedback after 2s
       setTimeout(() => { if (matchedCount < gameData.length) feedback.innerText = ''; }, 2000);
     });
   });

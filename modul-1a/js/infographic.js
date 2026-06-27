@@ -1,5 +1,6 @@
-﻿window.initInfographic = function(ekoData) {
+window.initInfographic = function(ekoData) {
   const container = document.getElementById('infographic-container');
+  container.innerHTML = '';
   
   if (!document.getElementById('infographic-style')) {
     const style = document.createElement('style');
@@ -55,18 +56,16 @@
     const card = document.createElement('div');
     card.className = 'info-card fade-in';
     card.style.background = item.warna;
-    card.style.animationDelay = \`${index * 0.15}s\`;
+    card.style.animationDelay = `${index * 0.15}s`;
     
     card.innerHTML = `
       <div class="info-title">${item.sektor}</div>
       <div class="info-desc">${item.kontribusi}</div>
     `;
     
-    // For touch devices
     card.addEventListener('click', () => {
        window.dkvCore.markComponentDone('1a', 'infographic');
     });
-    // For mouse
     card.addEventListener('mouseenter', () => {
        window.dkvCore.markComponentDone('1a', 'infographic');
     });

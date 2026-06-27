@@ -1,7 +1,7 @@
-﻿window.initFlipCards = function(profesiData) {
+window.initFlipCards = function(profesiData) {
   const container = document.getElementById('flip-cards-container');
+  container.innerHTML = ''; // clear previous
   
-  // Inject specific CSS for flip cards if not already present
   if (!document.getElementById('flip-card-style')) {
     const style = document.createElement('style');
     style.id = 'flip-card-style';
@@ -59,14 +59,12 @@
     document.head.appendChild(style);
   }
 
-  // Generate cards
-  // Limit to 6 to fit nicely in grid-3 (2 rows)
   const displayData = profesiData.slice(0, 6);
   
   displayData.forEach((prof, index) => {
     const card = document.createElement('div');
     card.className = 'flip-card fade-in';
-    card.style.animationDelay = \`${index * 0.1}s\`;
+    card.style.animationDelay = `${index * 0.1}s`;
     
     card.innerHTML = `
       <div class="flip-card-inner">

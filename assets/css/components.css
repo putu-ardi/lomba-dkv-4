@@ -242,3 +242,6 @@
 .global-footer a:hover {
   color: #FFA177;
 }
+
+.user-info-bar { background: white; padding: var(--spasi-3) var(--spasi-6); border-radius: var(--radius-md); margin-bottom: var(--spasi-6); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--bayangan-sm); color: var(--warna-primer); font-weight: 500; border-left: 4px solid var(--warna-aksen); }
+@media (max-width: 600px) { .user-info-bar { flex-direction: column; text-align: center; gap: var(--spasi-2); } }

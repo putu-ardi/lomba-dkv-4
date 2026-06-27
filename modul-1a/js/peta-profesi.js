@@ -1,48 +1,55 @@
-﻿window.initPetaProfesi = function(profesiData) {
+window.initPetaProfesi = function(profesiData) {
   const container = document.getElementById('mindmap');
   
-  // Create a modal for showing details
-  const detailModal = document.createElement('div');
-  detailModal.className = 'modal-overlay';
-  detailModal.id = 'peta-modal';
-  detailModal.innerHTML = `
-    <div class="modal-content" style="text-align:center;">
-      <h2 id="peta-title" style="color: var(--warna-primer);"></h2>
-      <div style="font-size: 3rem; margin: var(--spasi-2) 0;" id="peta-icon"></div>
-      <p id="peta-desc" style="font-size: var(--teks-lg); margin-bottom: var(--spasi-4);"></p>
-      <div style="background: var(--warna-netral-100); padding: var(--spasi-4); border-radius: var(--radius-md); text-align: left;">
-        <strong>ðŸ› ï¸ Tools Utama:</strong> <span id="peta-tools"></span><br><br>
-        <strong>ðŸ’° Rata-rata Gaji:</strong> <span id="peta-salary"></span>
+  // Create a modal for showing details if not exists
+  if (!document.getElementById('peta-modal')) {
+    const detailModal = document.createElement('div');
+    detailModal.className = 'modal-overlay';
+    detailModal.id = 'peta-modal';
+    detailModal.innerHTML = `
+      <div class="modal-content" style="text-align:center;">
+        <h2 id="peta-title" style="color: var(--warna-primer);"></h2>
+        <div style="font-size: 3rem; margin: var(--spasi-2) 0;" id="peta-icon"></div>
+        <p id="peta-desc" style="font-size: var(--teks-lg); margin-bottom: var(--spasi-4);"></p>
+        <div style="background: var(--warna-netral-100); padding: var(--spasi-4); border-radius: var(--radius-md); text-align: left;">
+          <strong>🛠️ Tools Utama:</strong> <span id="peta-tools"></span><br><br>
+          <strong>💰 Rata-rata Gaji:</strong> <span id="peta-salary"></span>
+        </div>
+        <button class="btn btn-primary" id="peta-close-btn" style="margin-top: var(--spasi-6); width: 100%;">Tutup</button>
       </div>
-      <button class="btn btn-primary" id="peta-close-btn" style="margin-top: var(--spasi-6); width: 100%;">Tutup</button>
-    </div>
-  `;
-  document.body.appendChild(detailModal);
+    `;
+    document.body.appendChild(detailModal);
 
-  const closeBtn = document.getElementById('peta-close-btn');
-  closeBtn.addEventListener('click', () => {
-    detailModal.classList.remove('active');
-  });
+    const closeBtn = document.getElementById('peta-close-btn');
+    closeBtn.addEventListener('click', () => {
+      detailModal.classList.remove('active');
+    });
+  }
 
-  // Calculate positions for nodes in a circle (Mind Map style)
-  const radius = window.innerWidth < 600 ? 120 : 180; 
+  const detailModal = document.getElementById('peta-modal');
+
+  // Clear previous nodes just in case
+  const oldNodes = container.querySelectorAll('.node-profesi');
+  oldNodes.forEach(n => n.remove());
+
+  // Calculate positions for nodes in an ellipse (Mind Map style)
+  const isMobile = window.innerWidth < 600;
+  const radiusX = isMobile ? 140 : 280; 
+  const radiusY = isMobile ? 100 : 160; 
   const totalNodes = profesiData.length;
   
   profesiData.forEach((prof, index) => {
-    const angle = (index / totalNodes) * (2 * Math.PI);
-    const x = Math.cos(angle) * radius;
-    const y = Math.sin(angle) * radius;
+    const angle = (index / totalNodes) * (2 * Math.PI) - (Math.PI / 2);
+    const x = Math.cos(angle) * radiusX;
+    const y = Math.sin(angle) * radiusY;
 
     const node = document.createElement('div');
     node.className = 'node-profesi fade-in';
-    // Style as absolute if we want a true circle, but our container is flex.
-    // To make a true mind map, we set container to relative and nodes to absolute.
     node.style.position = 'absolute';
     node.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-    // Add 50% left/top to center them relative to the container
     node.style.left = '50%';
     node.style.top = '50%';
-    node.style.animationDelay = \`${index * 0.1}s\`;
+    node.style.animationDelay = `${index * 0.1}s`;
 
     node.innerHTML = `<span>${prof.ikon}</span> <span>${prof.nama}</span>`;
     

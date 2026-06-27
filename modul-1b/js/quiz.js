@@ -1,4 +1,4 @@
-window.initQuiz = function(quizData) {
+window.initQuiz1B = function(quizData) {
   const container = document.getElementById('quiz-container');
   const startBtn = document.getElementById('start-quiz-btn');
   
@@ -9,14 +9,13 @@ window.initQuiz = function(quizData) {
 
   // Cek apakah sudah pernah lulus
   const state = window.dkvCore.getProgress();
-  if (state.modul_1a && state.modul_1a.skor_kuis >= 80) {
-    score = state.modul_1a.skor_kuis;
-    startBtn.style.display = 'none'; // Sembunyikan tombol mulai
+  if (state.modul_1b && state.modul_1b.skor_kuis >= 80) {
+    score = state.modul_1b.skor_kuis;
+    startBtn.style.display = 'none';
     showResults();
     return;
   }
 
-  // Hapus listener lama jika di-init dua kali
   const newStartBtn = startBtn.cloneNode(true);
   startBtn.parentNode.replaceChild(newStartBtn, startBtn);
 
@@ -84,14 +83,13 @@ window.initQuiz = function(quizData) {
   }
 
   function showResults() {
-    window.dkvCore.updateModuleQuiz('1a', score);
+    window.dkvCore.updateModuleQuiz('1b', score);
     
     let message = score >= 80 ? 'Luar biasa! Pemahamanmu sangat baik.' : 'Bagus! Tapi kamu bisa lebih baik lagi. Coba ulas kembali materinya.';
     let extraHtml = '';
     
     if (score === 100) {
       message = 'Selamat, Terjawab Sempurna! 🎇';
-      // Simple CSS Confetti injection
       if (!document.getElementById('confetti-style')) {
         const style = document.createElement('style');
         style.id = 'confetti-style';
@@ -117,19 +115,19 @@ window.initQuiz = function(quizData) {
       confettiHtml += '</div>';
       extraHtml = confettiHtml;
     }
-
+    
     container.innerHTML = `
       ${extraHtml}
       <div class="fade-in" style="text-align: center; padding: var(--spasi-6); position: relative; z-index: 10;">
         <h2 style="font-size: 3rem; color: var(--warna-primer); margin-bottom: 0;">${score}</h2>
-        <p style="font-size: var(--teks-lg);">Total Point Modul 1A</p>
+        <p style="font-size: var(--teks-lg);">Total Point Modul 1B</p>
         <p style="margin-bottom: var(--spasi-6); font-weight: 600;">${message}</p>
         ${score < 80 ? '<button class="btn btn-primary" id="retry-btn">Ulangi Kuis</button>' : ''}
         <a href="../index.html" class="btn btn-outline" style="margin-left: var(--spasi-2);">Kembali ke Beranda</a>
       </div>
     `;
 
-    window.dkvCore.updateModuleQuiz('1a', score);
+    window.dkvCore.updateModuleQuiz('1b', score);
 
     const retryBtn = document.getElementById('retry-btn');
     if (retryBtn) {

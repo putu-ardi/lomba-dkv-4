@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul 1B - Teknologi, Tren & Keberlanjutan</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <style>
+    .module-header {
+      text-align: center;
+      padding: var(--spasi-8) var(--spasi-6);
+      background: var(--gradien-aksen);
+      color: white;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spasi-8);
+      box-shadow: 0 10px 25px rgba(255, 79, 0, 0.3);
+    }
+  </style>
+</head>
+<body style="background: var(--gradien-bg); min-height: 100vh;">
+
+  <div class="container fade-in">
+    <!-- User Info Bar -->
+    <div id="user-info-container"></div>
+
+    <!-- Breadcrumb / Nav -->
+    <nav style="margin-bottom: var(--spasi-6); padding-top: var(--spasi-4);">
+      <a href="../index.html" class="btn btn-outline">← Kembali ke Beranda</a>
+    </nav>
+
+    <header class="module-header">
+      <h1 style="font-size: var(--teks-3xl); margin-bottom: var(--spasi-2);">Modul 1B</h1>
+      <p style="font-size: var(--teks-lg);">Perkembangan Teknologi Cetak dan Prinsip Keberlanjutan</p>
+    </header>
+
+    <main>
+      <!-- 1. Timeline Horizontal -->
+      <section class="card" style="margin-bottom: var(--spasi-8);">
+        <h2>1. Evolusi Teknologi Cetak</h2>
+        <p style="margin-bottom: var(--spasi-4);">Geser ke kanan untuk melihat bagaimana teknologi percetakan berevolusi dari masa ke masa.</p>
+        <div id="timeline-container" style="padding: var(--spasi-4) 0;"></div>
+      </section>
+
+      <!-- 2. Before / After Slider -->
+      <section class="card" style="margin-bottom: var(--spasi-8);">
+        <h2>2. Analog vs Digital</h2>
+        <p style="margin-bottom: var(--spasi-4);">Geser slider untuk membandingkan alur kerja desain masa lalu (analog) dengan masa kini (digital).</p>
+        <div id="before-after-container" style="display:flex; justify-content:center; align-items:center; flex-direction:column;"></div>
+      </section>
+
+      <!-- 3. Lifecycle Diagram -->
+      <section class="card" style="margin-bottom: var(--spasi-8);">
+        <h2>3. Siklus Hidup Produk Cetak</h2>
+        <p style="margin-bottom: var(--spasi-4);">Klik setiap tahapan untuk melihat dampaknya terhadap lingkungan.</p>
+        <div id="lifecycle-container"></div>
+      </section>
+
+      <!-- 4. Sorting Activity -->
+      <section class="card" style="margin-bottom: var(--spasi-8);">
+        <h2>4. Pilah Sampah Desain! (3R)</h2>
+        <p style="margin-bottom: var(--spasi-4);">Tarik setiap tindakan ke kotak <strong>Reduce</strong>, <strong>Reuse</strong>, atau <strong>Recycle</strong> yang tepat.</p>
+        <div id="sorting-container"></div>
+      </section>
+
+      <!-- 5. Branching Scenario -->
+      <section class="card" style="margin-bottom: var(--spasi-8);">
+        <h2>5. Simulasi: Proyek Ramah Lingkungan</h2>
+        <p style="margin-bottom: var(--spasi-4);">Bantu klien Anda mengambil keputusan terbaik untuk lingkungan!</p>
+        <div id="branching-container"></div>
+      </section>
+
+      <!-- 6. Quiz -->
+      <section class="card" style="margin-bottom: var(--spasi-8); border: 2px solid var(--warna-primer);">
+        <h2>6. Mini Quiz: Evaluasi Modul 1B</h2>
+        <p style="margin-bottom: var(--spasi-4);">Uji pemahamanmu dari komponen-komponen sebelumnya.</p>
+        <div id="quiz-container" style="text-align: center;">
+          <button class="btn btn-primary" id="start-quiz-btn" style="font-size: var(--teks-lg); padding: var(--spasi-4) var(--spasi-8);">Mulai Kuis</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/navigation.js"></script>
+  
+  <script src="js/timeline.js"></script>
+  <script src="js/before-after.js"></script>
+  <script src="js/lifecycle.js"></script>
+  <script src="js/sorting.js"></script>
+  <script src="js/branching.js"></script>
+  <script src="js/quiz.js"></script>
+
+  <!-- Load Data (Menghindari CORS error pada file lokal) -->
+  <script src="data/teknologi-data.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = window.dkvData1B;
+      
+      if(data) {
+        if(window.initTimeline) window.initTimeline(data.timeline);
+        if(window.initBeforeAfter) window.initBeforeAfter();
+        if(window.initLifecycle) window.initLifecycle(data.lifecycle);
+        if(window.initSorting) window.initSorting(data.sorting);
+        if(window.initBranching) window.initBranching(data.branching);
+        if(window.initQuiz1B) window.initQuiz1B(data.kuis);
+      } else {
+        console.error("Data 1B gagal dimuat.");
+      }
+    });
+  </script>
+</body>
+</html>

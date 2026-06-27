@@ -1,11 +1,11 @@
-﻿window.dkvData = {
+window.dkvData = {
   "profesi": [
     {
       "id": "graphic-designer",
       "nama": "Graphic Designer",
       "deskripsi": "Merancang komunikasi visual berupa poster, logo, dan brosur menggunakan tipografi, fotografi, dan ilustrasi.",
       "tools": ["Adobe Illustrator", "Photoshop", "InDesign", "CorelDraw"],
-      "ikon": "ðŸŽ¨",
+      "ikon": "🎨",
       "gaji": "Rp 4 - 8 Juta / bulan"
     },
     {
@@ -13,7 +13,7 @@
       "nama": "UI/UX Designer",
       "deskripsi": "Merancang antarmuka (UI) dan pengalaman pengguna (UX) untuk aplikasi web dan mobile agar mudah dan menyenangkan digunakan.",
       "tools": ["Figma", "Adobe XD", "Sketch", "Prototyping"],
-      "ikon": "ðŸ“±",
+      "ikon": "📱",
       "gaji": "Rp 6 - 15 Juta / bulan"
     },
     {
@@ -21,7 +21,7 @@
       "nama": "Illustrator",
       "deskripsi": "Membuat gambar atau lukisan manual/digital untuk menceritakan kisah, menghiasi buku, majalah, atau media promosi.",
       "tools": ["Procreate", "Clip Studio Paint", "Adobe Fresco", "Wacom"],
-      "ikon": "ðŸ–Œï¸",
+      "ikon": "🖌️",
       "gaji": "Rp 4 - 10 Juta / bulan"
     },
     {
@@ -29,7 +29,7 @@
       "nama": "Motion Graphic Designer",
       "deskripsi": "Membawa desain grafis menjadi hidup melalui animasi, tipografi bergerak, dan efek visual untuk video atau iklan.",
       "tools": ["After Effects", "Premiere Pro", "Cinema 4D"],
-      "ikon": "ðŸŽ¬",
+      "ikon": "🎬",
       "gaji": "Rp 5 - 12 Juta / bulan"
     },
     {
@@ -37,7 +37,7 @@
       "nama": "Art Director",
       "deskripsi": "Bertanggung jawab atas visi visual keseluruhan dari sebuah proyek, kampanye iklan, atau publikasi majalah.",
       "tools": ["Manajemen Tim", "Konsep Kreatif", "Moodboards"],
-      "ikon": "ðŸ‘‘",
+      "ikon": "👑",
       "gaji": "Rp 10 - 25 Juta / bulan"
     },
     {
@@ -45,7 +45,7 @@
       "nama": "Photographer",
       "deskripsi": "Menangkap momen, produk, atau konsep melalui lensa kamera untuk kebutuhan komersial maupun artistik.",
       "tools": ["Kamera DSLR/Mirrorless", "Lighting", "Lightroom"],
-      "ikon": "ðŸ“·",
+      "ikon": "📷",
       "gaji": "Rp 4 - 15 Juta / bulan (Project based)"
     },
     {
@@ -53,7 +53,7 @@
       "nama": "Videographer",
       "deskripsi": "Merekam dan mengedit video pendek, dokumenter, atau iklan komersial dengan tata letak dan pencahayaan yang sinematik.",
       "tools": ["Kamera Video", "Gimbal", "Premiere Pro", "DaVinci Resolve"],
-      "ikon": "ðŸŽ¥",
+      "ikon": "🎥",
       "gaji": "Rp 5 - 12 Juta / bulan"
     },
     {
@@ -61,7 +61,7 @@
       "nama": "Packaging Designer",
       "deskripsi": "Merancang bentuk fisik, bahan, dan grafis untuk kemasan produk yang melindungi sekaligus menjual produk tersebut.",
       "tools": ["Illustrator", "3D Mockup", "AutoCAD (Dasar)"],
-      "ikon": "ðŸ“¦",
+      "ikon": "📦",
       "gaji": "Rp 5 - 10 Juta / bulan"
     }
   ],
@@ -94,7 +94,8 @@
         "Graphic Designer",
         "UI/UX Designer",
         "Art Director",
-        "Illustrator"
+        "Illustrator",
+        "Web Developer"
       ],
       "jawaban": 1
     },
@@ -104,7 +105,8 @@
         "Motion Graphic Designer",
         "Photographer",
         "Packaging Designer",
-        "Copywriter"
+        "Copywriter",
+        "Videographer"
       ],
       "jawaban": 0
     },
@@ -114,7 +116,8 @@
         "Arsitektur",
         "Kuliner",
         "Penerbitan",
-        "Seni Pertunjukan"
+        "Seni Pertunjukan",
+        "Fashion"
       ],
       "jawaban": 2
     },
@@ -124,7 +127,8 @@
         "Illustrator",
         "Videographer",
         "Graphic Designer",
-        "Art Director"
+        "Art Director",
+        "Fotografer"
       ],
       "jawaban": 3
     },
@@ -134,10 +138,10 @@
         "Photographer",
         "UI/UX Designer",
         "Videographer",
-        "Animator 3D"
+        "Animator 3D",
+        "Sound Engineer"
       ],
       "jawaban": 1
     }
   ]
-}
-;
+};

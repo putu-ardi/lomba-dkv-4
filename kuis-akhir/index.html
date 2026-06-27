@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Komprehensif Akhir - DKV Grafika</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  
+  <style>
+    /* Premium Final Quiz Styles */
+    .final-hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: white;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 10px 25px rgba(45, 45, 229, 0.3);
+      padding: var(--spasi-10) var(--spasi-6);
+      text-align: center;
+      margin-bottom: var(--spasi-8);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .final-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+    
+    .final-badge {
+      display: inline-block;
+      background: rgba(255, 215, 0, 0.2);
+      color: #ffd700;
+      border: 1px solid #ffd700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: var(--spasi-4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    /* Modifikasi UI Quiz agar lebih elegan */
+    .quiz-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: var(--spasi-8);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid var(--warna-netral-200);
+    }
+    
+    .question-type-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      background: var(--warna-netral-100);
+      color: var(--warna-netral-700);
+      margin-bottom: var(--spasi-4);
+    }
+
+    /* Option button styles */
+    .q-opt-btn {
+      width: 100%;
+      text-align: left;
+      padding: var(--spasi-4);
+      border: 2px solid var(--warna-netral-200);
+      border-radius: var(--radius-md);
+      background: transparent;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--warna-netral-800);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: var(--spasi-3);
+    }
+    
+    .q-opt-btn:hover {
+      border-color: var(--warna-primer);
+      background: var(--warna-netral-50);
+    }
+    
+    .q-opt-btn.selected {
+      border-color: var(--warna-primer);
+      background: rgba(59, 130, 246, 0.1);
+      font-weight: 600;
+    }
+
+    /* Protection Overlay */
+    #protection-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.95);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: var(--spasi-6);
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body style="background: var(--warna-netral-50); min-height: 100vh;">
+  
+  <!-- Protection Screen -->
+  <div id="protection-overlay">
+    <div style="font-size: 4rem; margin-bottom: var(--spasi-4);">🔒</div>
+    <h2 style="color: var(--warna-bahaya); margin-bottom: var(--spasi-2);">Akses Ditolak!</h2>
+    <p style="color: var(--warna-netral-700); font-size: 1.1rem; max-width: 500px; margin-bottom: var(--spasi-6);">
+      Kuis Komprehensif Akhir hanya dapat diakses setelah Anda menyelesaikan <strong>semua</strong> modul (1A, 1B, 1C) dengan skor minimal 80.
+    </p>
+    <a href="../index.html" class="btn btn-primary">Kembali ke Beranda</a>
+  </div>
+
+  <div class="container fade-in">
+    <!-- Kontainer Informasi Pengguna -->
+    <div id="user-info-container"></div>
+
+    <!-- Breadcrumb / Nav -->
+    <nav class="module-nav" style="margin-bottom: var(--spasi-6);">
+      <a href="../index.html" class="btn btn-outline">← Kembali ke Beranda</a>
+    </nav>
+
+    <main>
+    <section class="final-hero fade-in">
+      <div class="final-badge">Evaluasi Puncak</div>
+      <h1 style="font-size: 3rem; margin-bottom: var(--spasi-2);">Kuis Komprehensif Akhir</h1>
+      <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+        Buktikan penguasaanmu atas dunia Profesi DKV, Teknologi Cetak, hingga Bahasa Visual. Ujian ini mengadopsi format kompleks yang membutuhkan nalar tinggi.
+      </p>
+    </section>
+
+    <!-- Pre-Quiz Info -->
+    <div class="quiz-card fade-in" id="intro-screen">
+      <h3 style="text-align: center; margin-bottom: var(--spasi-6);">Informasi Kuis</h3>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spasi-4); margin-bottom: var(--spasi-8);">
+        <div style="background: var(--warna-netral-50); padding: var(--spasi-4); border-radius: var(--radius-md); text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: var(--spasi-2);">📝</div>
+          <div style="font-weight: bold; font-size: 1.2rem;">10 Soal</div>
+          <div style="font-size: 0.9rem; color: var(--warna-netral-600);">Format Campuran</div>
+        </div>
+        <div style="background: var(--warna-netral-50); padding: var(--spasi-4); border-radius: var(--radius-md); text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: var(--spasi-2);">🎯</div>
+          <div style="font-weight: bold; font-size: 1.2rem;">Passing Grade: 80</div>
+          <div style="font-size: 0.9rem; color: var(--warna-netral-600);">Syarat Kelulusan</div>
+        </div>
+      </div>
+      
+      <div style="background: rgba(245,158,11,0.1); border-left: 4px solid var(--warna-aksen); padding: var(--spasi-4); margin-bottom: var(--spasi-6); border-radius: 0 var(--radius-md) var(--radius-md) 0;">
+        <strong style="color: #b45309;">Perhatian:</strong> Baca instruksi setiap soal dengan teliti. Beberapa soal mungkin membutuhkan Anda untuk mencentang lebih dari satu jawaban yang benar.
+      </div>
+
+      <div style="text-align: center;">
+        <button id="start-btn" class="btn btn-primary" style="font-size: 1.2rem; padding: 12px 32px; box-shadow: 0 10px 25px rgba(59,130,246,0.4);">
+          Mulai Ujian Sekarang
+        </button>
+      </div>
+    </div>
+
+    <!-- Quiz Engine Container -->
+    <div class="quiz-card hidden" id="quiz-screen">
+      <!-- Injected by engine.js -->
+    </div>
+
+    <!-- Result Screen -->
+    <div class="quiz-card hidden" id="result-screen">
+      <!-- Injected by engine.js -->
+    </div>
+
+  </main>
+  </div> <!-- End container -->
+
+  <script src="../assets/js/core.js"></script>
+  <script>
+    // URL Protection Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const state = window.dkvCore.getProgress();
+      const s1a = state.modul_1a?.skor_kuis || 0;
+      const s1b = state.modul_1b?.skor_kuis || 0;
+      const s1c = state.modul_1c?.skor_kuis || 0;
+      
+      if (s1a >= 80 && s1b >= 80 && s1c >= 80) {
+        // Lulus prasyarat, hilangkan overlay protection
+        const overlay = document.getElementById('protection-overlay');
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.remove(), 500);
+      }
+    });
+  </script>
+  <script src="data/bank-soal.js"></script>
+  <script src="js/engine.js"></script>
+</body>
+</html>

@@ -55,30 +55,6 @@
 </head>
 <body style="background: var(--gradien-bg); min-height: 100vh;">
 
-  <!-- Modal Popup Profil -->
-  <div class="modal-overlay" id="profile-modal">
-    <div class="modal-content">
-      <h2 style="margin-bottom: var(--spasi-2);">Selamat Datang!</h2>
-      <p style="margin-bottom: var(--spasi-6); color: var(--warna-netral-800);">Silakan lengkapi data diri Anda sebelum memulai.</p>
-      
-      <form id="profile-form">
-        <div class="form-group">
-          <label for="input-nisn">NISN</label>
-          <input type="text" id="input-nisn" class="form-control" required placeholder="Masukkan NISN">
-        </div>
-        <div class="form-group">
-          <label for="input-nama">Nama Lengkap</label>
-          <input type="text" id="input-nama" class="form-control" required placeholder="Masukkan Nama">
-        </div>
-        <div class="form-group">
-          <label for="input-smk">Asal SMK</label>
-          <input type="text" id="input-smk" class="form-control" required placeholder="Contoh: SMKN 1 Klungkung">
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--spasi-4);">Mulai Belajar</button>
-      </form>
-    </div>
-  </div>
-
   <div class="container fade-in">
     <!-- Kontainer Informasi Pengguna -->
     <div id="user-info-container"></div>
@@ -145,61 +121,99 @@
   <script src="assets/js/accessibility.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Logic for Profile Modal
-      const profile = window.dkvCore.getProfile();
-      const modal = document.getElementById('profile-modal');
-      const form = document.getElementById('profile-form');
-      
-      if (!profile) {
-        // Show modal if no profile
-        modal.classList.add('active');
-        
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const nisn = document.getElementById('input-nisn').value.trim();
-          const nama = document.getElementById('input-nama').value.trim();
-          const smk = document.getElementById('input-smk').value.trim();
-          
-          if (nisn && nama && smk) {
-            window.dkvCore.saveProfile({ nisn, nama, smk });
-            modal.classList.remove('active');
-            window.dkvCore.renderUserInfo();
-          }
-        });
-      }
-
       // Update UI based on LocalStorage
       const state = window.dkvCore.getProgress();
-      
-      const modules = ['1a', '1b', '1c'];
-      let allCompleted = true;
+            const modules = ['1a', '1b', '1c'];
+        let allCompleted = true;
+        let isPreviousLulus = true; // Modul pertama selalu terbuka di awal
+  
+        modules.forEach(mod => {
+          const modState = state[`modul_${mod}`];
+          const badge = document.getElementById(`badge-${mod}`);
+          const progressBar = document.getElementById(`progress-${mod}`);
+          const btnLink = document.querySelector(`#card-${mod} .btn`);
+          const card = document.getElementById(`card-${mod}`);
+          
+          const persentase = modState.skor_kuis ? modState.skor_kuis : 0;
+          const isLulus = (modState.status === 'selesai' || persentase >= 80);
 
-      modules.forEach(mod => {
-        const modState = state[`modul_${mod}`];
-        const badge = document.getElementById(`badge-${mod}`);
-        const progressBar = document.getElementById(`progress-${mod}`);
-        
-        if (modState.status === 'selesai') {
-          badge.className = 'status-badge status-selesai';
-          badge.innerText = 'Selesai';
-          progressBar.style.width = '100%';
-        } else if (modState.status === 'sedang') {
-          badge.className = 'status-badge status-sedang';
-          badge.innerText = 'Sedang Dikerjakan';
-          progressBar.style.width = '50%'; // Simplified calculation for MVP hub
-          allCompleted = false;
-        } else {
-          allCompleted = false;
-        }
-      });
+          if (!isPreviousLulus) {
+            // Kunci modul ini karena modul sebelumnya belum lulus
+            card.style.opacity = '0.6';
+            card.style.pointerEvents = 'none';
+            card.style.filter = 'grayscale(100%)';
+            badge.className = 'status-badge status-belum';
+            badge.innerText = 'Terkunci 🔒';
+            btnLink.innerText = 'Selesaikan Modul Sebelumnya';
+            btnLink.style.background = 'var(--warna-netral-400)';
+            btnLink.style.borderColor = 'var(--warna-netral-400)';
+            btnLink.removeAttribute('href');
+            progressBar.style.width = '0%';
+            allCompleted = false;
+          } else {
+            // Modul ini terbuka
+            progressBar.style.width = persentase + '%';
+            
+            if (isLulus) {
+              badge.className = 'status-badge status-selesai';
+              badge.innerText = 'Lulus ✓ (' + persentase + ')';
+              btnLink.innerText = 'Selesai ✓';
+              btnLink.className = 'btn';
+              btnLink.style.background = 'var(--warna-sukses)';
+              btnLink.style.color = 'white';
+              btnLink.style.borderColor = 'var(--warna-sukses)';
+            } else if (modState.status === 'sedang' || persentase > 0) {
+              badge.className = 'status-badge status-sedang';
+              badge.innerText = 'Sedang Dikerjakan (' + persentase + ')';
+              allCompleted = false;
+            } else {
+              allCompleted = false;
+            }
+          }
+          
+          // Syarat untuk membuka modul berikutnya di iterasi selanjutnya
+          isPreviousLulus = isLulus;
+        });
 
       // Unlock final quiz if all completed
       const btnKuis = document.getElementById('btn-kuis');
+      
       if (allCompleted) {
         btnKuis.style.opacity = '1';
         btnKuis.style.pointerEvents = 'auto';
-        btnKuis.innerText = 'Mulai Kuis Akhir';
-        btnKuis.className = 'btn btn-primary';
+        
+        // Cek jika Kuis Akhir sudah Lulus
+        if (state.kuis_akhir && state.kuis_akhir.skor !== null) {
+          if (state.kuis_akhir.skor >= 80) {
+            btnKuis.innerText = 'Unduh Sertifikat (LULUS ✓)';
+            btnKuis.className = 'btn';
+            btnKuis.style.background = 'var(--warna-sukses)';
+            btnKuis.style.color = 'white';
+            
+            // Injeksi Banner Kelulusan
+            const bannerHtml = `
+              <div class="fade-in" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: var(--spasi-6); border-radius: var(--radius-xl); margin-top: var(--spasi-8); margin-bottom: var(--spasi-8); box-shadow: 0 10px 25px rgba(16,185,129,0.4); text-align: center; border: 4px solid #fff;">
+                <div style="font-size: 4rem; margin-bottom: var(--spasi-2);">🎓</div>
+                <h2 style="font-size: 2.5rem; margin-bottom: var(--spasi-2); font-weight: 800;">SELAMAT! ANDA LULUS!</h2>
+                <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Anda telah menamatkan seluruh kurikulum dasar <strong>DKV Grafika Interaktif</strong> dengan skor akhir <strong>${state.kuis_akhir.skor}</strong>.</p>
+              </div>
+            `;
+            // Insert after user-info-container
+            const userInfo = document.getElementById('user-info-container');
+            if (userInfo && !document.getElementById('kelulusan-banner')) {
+              const banner = document.createElement('div');
+              banner.id = 'kelulusan-banner';
+              banner.innerHTML = bannerHtml;
+              userInfo.parentNode.insertBefore(banner, userInfo.nextSibling);
+            }
+          } else {
+            btnKuis.innerText = 'Ulangi Kuis Akhir (Nilai: ' + state.kuis_akhir.skor + ')';
+            btnKuis.className = 'btn btn-primary';
+          }
+        } else {
+          btnKuis.innerText = 'Mulai Kuis Akhir';
+          btnKuis.className = 'btn btn-primary';
+        }
       }
     });
   </script>
