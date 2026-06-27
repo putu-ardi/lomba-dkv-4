@@ -1,4 +1,4 @@
-window.initFlipCards = function(profesiData) {
+﻿window.initFlipCards = function(profesiData) {
   const container = document.getElementById('flip-cards-container');
   
   // Inject specific CSS for flip cards if not already present
@@ -66,18 +66,18 @@ window.initFlipCards = function(profesiData) {
   displayData.forEach((prof, index) => {
     const card = document.createElement('div');
     card.className = 'flip-card fade-in';
-    card.style.animationDelay = \`\${index * 0.1}s\`;
+    card.style.animationDelay = \`${index * 0.1}s\`;
     
     card.innerHTML = `
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <div class="icon">\${prof.ikon}</div>
-          <h3 style="margin:0;">\${prof.nama}</h3>
+          <div class="icon">${prof.ikon}</div>
+          <h3 style="margin:0;">${prof.nama}</h3>
           <span style="font-size: var(--teks-xs); margin-top: var(--spasi-2); opacity: 0.6;">Klik untuk membalik</span>
         </div>
         <div class="flip-card-back">
           <h4 style="margin-bottom: var(--spasi-2);">Tugas Utama</h4>
-          <p>\${prof.deskripsi}</p>
+          <p>${prof.deskripsi}</p>
         </div>
       </div>
     `;

@@ -1,4 +1,4 @@
-window.initInfographic = function(ekoData) {
+﻿window.initInfographic = function(ekoData) {
   const container = document.getElementById('infographic-container');
   
   if (!document.getElementById('infographic-style')) {
@@ -55,11 +55,11 @@ window.initInfographic = function(ekoData) {
     const card = document.createElement('div');
     card.className = 'info-card fade-in';
     card.style.background = item.warna;
-    card.style.animationDelay = \`\${index * 0.15}s\`;
+    card.style.animationDelay = \`${index * 0.15}s\`;
     
     card.innerHTML = `
-      <div class="info-title">\${item.sektor}</div>
-      <div class="info-desc">\${item.kontribusi}</div>
+      <div class="info-title">${item.sektor}</div>
+      <div class="info-desc">${item.kontribusi}</div>
     `;
     
     // For touch devices

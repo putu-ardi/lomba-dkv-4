@@ -1,4 +1,4 @@
-window.initQuiz = function(quizData) {
+﻿window.initQuiz = function(quizData) {
   const container = document.getElementById('quiz-container');
   const startBtn = document.getElementById('start-quiz-btn');
   
@@ -21,13 +21,13 @@ window.initQuiz = function(quizData) {
     
     let html = `
       <div class="fade-in" style="margin-top: var(--spasi-4);">
-        <h3 style="margin-bottom: var(--spasi-4);">Soal \${currentQuestion + 1} dari \${quizData.length}</h3>
-        <p style="font-size: var(--teks-lg); margin-bottom: var(--spasi-6);">\${q.soal}</p>
+        <h3 style="margin-bottom: var(--spasi-4);">Soal ${currentQuestion + 1} dari ${quizData.length}</h3>
+        <p style="font-size: var(--teks-lg); margin-bottom: var(--spasi-6);">${q.soal}</p>
         <div style="display: flex; flex-direction: column; gap: var(--spasi-2);" id="quiz-options">
     `;
 
     q.opsi.forEach((opt, index) => {
-      html += `<button class="btn btn-outline" style="text-align: left; border-color: #ccc; color: var(--warna-netral-800);" data-idx="\${index}">\${opt}</button>`;
+      html += `<button class="btn btn-outline" style="text-align: left; border-color: #ccc; color: var(--warna-netral-800);" data-idx="${index}">${opt}</button>`;
     });
 
     html += `
@@ -51,7 +51,7 @@ window.initQuiz = function(quizData) {
           this.style.backgroundColor = 'var(--warna-sukses)';
           this.style.color = 'white';
           feedback.style.color = 'var(--warna-sukses)';
-          feedback.innerText = 'Benar! ✓';
+          feedback.innerText = 'Benar! âœ“';
           score += 20; // 5 questions = 100 points
         } else {
           this.style.backgroundColor = 'var(--warna-bahaya)';
@@ -61,7 +61,7 @@ window.initQuiz = function(quizData) {
           options[q.jawaban].style.color = 'white';
           
           feedback.style.color = 'var(--warna-bahaya)';
-          feedback.innerText = 'Salah! ✗ Jawaban yang benar ditandai warna hijau.';
+          feedback.innerText = 'Salah! âœ— Jawaban yang benar ditandai warna hijau.';
         }
 
         setTimeout(() => {
@@ -80,9 +80,9 @@ window.initQuiz = function(quizData) {
     
     container.innerHTML = `
       <div class="fade-in" style="text-align: center; padding: var(--spasi-6);">
-        <h2 style="font-size: 3rem; color: var(--warna-primer); margin-bottom: 0;">\${score}</h2>
+        <h2 style="font-size: 3rem; color: var(--warna-primer); margin-bottom: 0;">${score}</h2>
         <p style="font-size: var(--teks-lg);">Skor Kamu</p>
-        <p style="margin-bottom: var(--spasi-6);">\${message}</p>
+        <p style="margin-bottom: var(--spasi-6);">${message}</p>
         <button class="btn btn-primary" id="retry-btn">Ulangi Kuis</button>
         <a href="../index.html" class="btn btn-outline" style="margin-left: var(--spasi-2);">Kembali ke Beranda</a>
       </div>

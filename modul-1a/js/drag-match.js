@@ -1,4 +1,4 @@
-window.initDragMatch = function(profesiData) {
+﻿window.initDragMatch = function(profesiData) {
   const container = document.getElementById('drag-drop-container');
   
   // Style injection
@@ -71,14 +71,14 @@ window.initDragMatch = function(profesiData) {
   // Draggables Column
   html += '<div class="drag-column" id="draggables-col"><h4>Profesi</h4>';
   gameData.forEach(item => {
-    html += `<div class="draggable-item" draggable="true" id="drag-\${item.id}" data-id="\${item.id}">\${item.ikon} \${item.nama}</div>`;
+    html += `<div class="draggable-item" draggable="true" id="drag-${item.id}" data-id="${item.id}">${item.ikon} ${item.nama}</div>`;
   });
   html += '</div>';
 
   // Dropzones Column
   html += '<div class="drag-column" id="dropzones-col"><h4>Tugas Utama</h4>';
   tasks.forEach(item => {
-    html += `<div class="drop-zone" data-target="\${item.id}">\${item.deskripsi}</div>`;
+    html += `<div class="drop-zone" data-target="${item.id}">${item.deskripsi}</div>`;
   });
   html += '</div></div>';
   html += '<div class="feedback-msg" id="drag-feedback"></div>';
@@ -135,7 +135,7 @@ window.initDragMatch = function(profesiData) {
         
         matchedCount++;
         if (matchedCount === gameData.length) {
-          feedback.innerText = 'Luar Biasa! Semua profesi berhasil dicocokkan! 🎉';
+          feedback.innerText = 'Luar Biasa! Semua profesi berhasil dicocokkan! ðŸŽ‰';
           window.dkvCore.markComponentDone('1a', 'drag_match');
         }
       } else {

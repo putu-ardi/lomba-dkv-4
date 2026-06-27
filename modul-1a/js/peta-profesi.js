@@ -1,4 +1,4 @@
-window.initPetaProfesi = function(profesiData) {
+﻿window.initPetaProfesi = function(profesiData) {
   const container = document.getElementById('mindmap');
   
   // Create a modal for showing details
@@ -11,8 +11,8 @@ window.initPetaProfesi = function(profesiData) {
       <div style="font-size: 3rem; margin: var(--spasi-2) 0;" id="peta-icon"></div>
       <p id="peta-desc" style="font-size: var(--teks-lg); margin-bottom: var(--spasi-4);"></p>
       <div style="background: var(--warna-netral-100); padding: var(--spasi-4); border-radius: var(--radius-md); text-align: left;">
-        <strong>🛠️ Tools Utama:</strong> <span id="peta-tools"></span><br><br>
-        <strong>💰 Rata-rata Gaji:</strong> <span id="peta-salary"></span>
+        <strong>ðŸ› ï¸ Tools Utama:</strong> <span id="peta-tools"></span><br><br>
+        <strong>ðŸ’° Rata-rata Gaji:</strong> <span id="peta-salary"></span>
       </div>
       <button class="btn btn-primary" id="peta-close-btn" style="margin-top: var(--spasi-6); width: 100%;">Tutup</button>
     </div>
@@ -42,9 +42,9 @@ window.initPetaProfesi = function(profesiData) {
     // Add 50% left/top to center them relative to the container
     node.style.left = '50%';
     node.style.top = '50%';
-    node.style.animationDelay = \`\${index * 0.1}s\`;
+    node.style.animationDelay = \`${index * 0.1}s\`;
 
-    node.innerHTML = `<span>\${prof.ikon}</span> <span>\${prof.nama}</span>`;
+    node.innerHTML = `<span>${prof.ikon}</span> <span>${prof.nama}</span>`;
     
     node.addEventListener('click', () => {
       document.getElementById('peta-title').innerText = prof.nama;
