@@ -1,4 +1,4 @@
-# Media Pembelajaran Interaktif - DKV Grafika
+# Media Pembelajaran Interaktif - DKV Grafika v 1.0 (Juni 2026)
 
 Media Pembelajaran Interaktif untuk Materi I: Wawasan Dunia Kerja Bidang DKV dan Grafika (SMK/Vokasi Kelas X).
 Berbasis Standalone HTML + JavaScript tanpa server.
@@ -13,3 +13,7 @@ Berbasis Standalone HTML + JavaScript tanpa server.
 * Modul 1B - Teknologi, Tren & Keberlanjutan
 * Modul 1C - Bahasa Visual & Design Thinking
 * Kuis Akhir Komprehensif
+
+Pembuat : I Putu Ardi Supartawan
+Email	: putuardi@smkn1klk.sch.id
+Website : putuardi.smkn1klk.sch.id
